@@ -12,7 +12,7 @@ import java.sql.Statement;
  *
  */
 public class ConnDB {
-	private static final String url = "jdbc:mysql://localhost:3306/eshop?useUnicode=true&characterEncoding=utf-8";
+	private static final String url = "jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf-8";
 	/**
 	 * 获取连接的方法
 	 * @return

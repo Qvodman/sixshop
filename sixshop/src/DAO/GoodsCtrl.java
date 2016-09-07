@@ -2,7 +2,9 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import Entity.*;
 import DB.*;
@@ -17,13 +19,14 @@ public class GoodsCtrl {
 		int res =0;
 		Connection conn =ConnDB.getConn();
 		PreparedStatement stmt =null;
-		String sql ="insert into goods values(?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql ="insert into goods values(?,?,?,?,?,?,?,?,?)";
 			try {
 				stmt =conn.prepareStatement(sql);
 				stmt.setString(1, goods.getGoodsID());
 				stmt.setString(2, goods.getGoodsName());
 				stmt.setString(3, goods.getGoodsType());
-				stmt.setString(4, goods.getGoodsImage());
+				//stmt.setString(4, goods.getGoodsImage());
+				stmt.setString(4, "1");
 				stmt.setInt(5, goods.getGoodsKucun());
 				stmt.setInt(6, goods.getGoodsYishou());
 				stmt.setDouble(7, goods.getGoodsPrice());

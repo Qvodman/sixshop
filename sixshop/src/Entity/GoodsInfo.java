@@ -13,7 +13,7 @@ public class GoodsInfo {
 	private String image;
 	private int kucun;
 	private int yishou;
-	private float price;
+	private double price;
 	private String miaosu;
 	private int shangjia;
 	
@@ -59,10 +59,10 @@ public class GoodsInfo {
 		this.yishou = yishou;
 	}
 	
-	public float getGoodsPrice(){
+	public double getGoodsPrice(){
 		return price;
 	}
-	public void setGoodsPrice(float price) {
+	public void setGoodsPrice(double price) {
 		this.price = price;
 	}
 	
