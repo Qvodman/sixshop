@@ -23,6 +23,18 @@
     <url-pattern>/admin/Admin_AddGoodsServlet</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>Admin_ShangjiaServlet</servlet-name>
+    <servlet-class>Servlet.Admin_ShangjiaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Admin_ShangjiaServlet</servlet-name>
+    <url-pattern>/admin/Admin_ShangjiaServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

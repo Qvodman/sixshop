@@ -1,3 +1,13 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*"%>
+<%@ page import="DB.*"%>
+<%@ page import="DAO.*"%>
+<%@ page import="Entity.*"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
@@ -60,12 +70,32 @@
 									    	<tr>
 												<td><input type="text" class="form-control" id="id" name="id" placeholder="请输入编号"></td>
 												<td><input type="text" class="form-control" id="name" name="name" placeholder="请输入名称"></td>
-												<td><input type="text" class="form-control" id="type" name="type" placeholder="请输入类型"></td>
-												<td><input type="text" class="form-control" id="kucun" name="kucun" placeholder="请输入库存"></td>
+												<!-- <td><input type="text" class="form-control" id="type" name="type" placeholder="请输入类型"></td> -->
+												<td><select class="form-control" id="type" name="type" >
+										<%
+										Connection conn = ConnDB.getConn();
+										Statement stmt = null;
+										ResultSet rs = null;
+										String sql = "select * from goodssort";
+										stmt = conn.createStatement();
+										rs = stmt.executeQuery(sql);
+										out.print("<option value='0'>请输入类型</option>");
+										while(rs.next()){
+											out.print("<option value ='"+rs.getString("ID")+"'>"+rs.getString("name")+"</option>");
+										}
+										%></select></td>
+										<td><input type="text" class="form-control" id="kucun" name="kucun" placeholder="请输入库存"></td>
 												<td><input type="text" class="form-control" id="yishou" name="yishou" placeholder="0" value="0" disabled></td>
    												<td><input type="text" class="form-control" id="price" name="price" placeholder="请输入价格"></td>
 												<td><input type="text" class="form-control" id="miaoshu" name="miaosu" placeholder="请输入描述"></td>
-												<td><input type="checkbox" style="width:35px" value="1" name="shangjia"></td>
+												<!-- <td><input type="checkbox" style="width:35px" value="0" name="shangjia"></td> -->
+												<td><select class="form-control"  name="shangjia" >
+													<%
+													out.print("<option value='1'>上架</option>");
+													out.print("<option value='0'>不上架</option>"); %>
+													</select>
+													
+												</td>
 												<td><input type="file" name="file" size="15" input enctype="multipart/form-data" maxlength="100" name="image"></td>
 												<td><input type="button" value="+" onclick="addColumn()"></td>
 												<td><input type="button" value="X" onclick="deletefile(this)"></td>
@@ -73,7 +103,7 @@
 									    <tfoot>
 									    	<tr>
 									    		<th colspan="10" style="text-align: center;">
-									    			<input type="button" value="确定">
+									    			<input type="submit" value="确定">
 									    			<input type="button" value="取消">
 									    		</th>
 									    		

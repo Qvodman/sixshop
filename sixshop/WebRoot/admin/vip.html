@@ -29,7 +29,7 @@
 								<div class="col-md-12" >
 									<div class="panel panel-default">
 									  <!-- Default panel contents -->
-									  <div class="panel-heading">上架商品</div>
+									  <div class="panel-heading">修改订单信息</div>
 									  <div class="panel-body">
 									    <p>
 									    	Some default panel content here. Nulla vitae elit libero, a pharetra augue.
@@ -40,34 +40,33 @@
 									  </div>
 									
 									  <!-- Table -->
-									   <form action="#" method="post">
+									  <form action="#" method="post">
 									  <table class="table" >
 									    <thead>
 									    	<tr>
-									    		<th>编号</th>
-									    		<th>名称</th>
-									    		<th>类型</th>
-									    		<th>库存</th>
-									    		<th>已售</th>
-									    		<th>价格</th>
-									    		<th>描述</th>
+									    		<th>会员ID</th>
+									    		<th>会员姓名</th>
 									    		<th>状态</th>
-									    		
-									    		
 									    	</tr>
 									    </thead>
 									    <tbody id="table" style="text-align: center;">
 									    	<tr>
-									    		<td> 21 </td>
-									    		<td> 2111 </td>
-									    		<td> 21111 </td>
-									    		<td> 211111 </td>
-									    		<td> 2111111 </td>
-									    		<td> 21111111</td>
-									    		<td> 211111111 </td>
-									    		<td> <input type="button"  value="上架" ></td>
-									    		
-									    		
+									    		<td>111 </td>
+									    		<td> XXX </td>
+									    		<td> 
+									    			<!-- Single button -->
+													<div class="btn-group">
+													  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+													   <span  id="tag">Action</span> <span class="caret"></span>
+													  </button>
+													  <ul class="dropdown-menu" role="menu">
+													    <li><a href="#" onclick="display('冻结')">冻结账户</a></li>
+													    <li><a href="#" onclick="display('正常')">解除冻结</a></li>
+													    <li class="divider"></li>
+													    <li><a href="#">Separated link</a></li>
+													  </ul>
+													</div>
+									    	    </td>
 									    	</tr> 	
 									    </tbody>
 									    <tfoot>
@@ -100,6 +99,9 @@
 			    	
 			    	var tr = $(input).parents("tr");
 			    	tr.remove();
+			    }
+			    function display(status){
+			    	$("#tag").html(status);
 			    }
 		</script>
 	</body>

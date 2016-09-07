@@ -8,10 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import DAO.AdminCtrl;
 import DAO.GoodsCtrl;
 import Entity.GoodsInfo;
 
-public class Admin_AddGoodsServlet extends HttpServlet {
+public class Admin_ShangjiaServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -21,7 +22,7 @@ public class Admin_AddGoodsServlet extends HttpServlet {
 	/**
 	 * Constructor of the object.
 	 */
-	public Admin_AddGoodsServlet() {
+	public Admin_ShangjiaServlet() {
 		super();
 	}
 
@@ -65,35 +66,17 @@ public class Admin_AddGoodsServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		
-		GoodsInfo goods = new GoodsInfo();
-		GoodsCtrl gc = new GoodsCtrl();
+		AdminCtrl ac = new AdminCtrl();
 		
 		String goodsId =request.getParameter("id");
-		String goodsName =request.getParameter("name");
-		String goodsSort =request.getParameter("type");
-		//String goodsImg =request.getParameter("image");
-		String goodsImg="1";
-		int goodsKucun =Integer.parseInt(request.getParameter("kucun"));
-		double goodsPrice =Double.parseDouble(request.getParameter("price"));
-		String goodsMiaosu =request.getParameter("miaosu");
-		int goodsShangjia =Integer.parseInt(request.getParameter("shangjia"));
 
-		goods.setGoodsID(goodsId);
-		goods.setGoodsName(goodsName);
-		goods.setGoodsType(goodsSort);
-		goods.setGoodsImage("1");
-		goods.setGoodsKucun(goodsKucun);
-		goods.setGoodsYishou(0);
-		goods.setGoodsPrice(goodsPrice);
-		goods.setGoodsMiaosu(goodsMiaosu);
-		goods.setGoodsShangjia(goodsShangjia);
+
 		
-		int res =gc.addGoods(goods);
+		int res =ac.ShangjiaGoods(goodsId);
 		if(res>0){
-			out.print("<script>alert('添加成功！');window.location.href='../admin/addgoods.jsp';</script>");
+			out.print("<script>alert('上架成功！');window.location.href='../admin/shangjia.jsp';</script>");
 		}else{
-			out.print("<script>alert('添加失败！');window.history.back();</script>");
+			out.print("<script>alert('上架失败！');window.history.back();</script>");
 		}
 	}
 

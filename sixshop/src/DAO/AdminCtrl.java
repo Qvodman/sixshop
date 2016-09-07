@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
 import Entity.*;
 import DB.*;
 
@@ -200,6 +201,91 @@ public class AdminCtrl {
 				stmt =conn.prepareStatement(sql);
 				stmt.setString(1, sort.getSortname());				
 				res =stmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				ConnDB.close(null, stmt, conn);
+			}
+		return res;
+	}
+	
+	/**
+	 * 查询所有商品类别
+	 * @return
+	 */
+	public ArrayList<GoodsSort> selsort(){
+		ArrayList<GoodsSort> asort = null;
+		Connection conn = ConnDB.getConn();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from goodssort";
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				if(asort == null)
+					asort = new ArrayList<GoodsSort>();
+					GoodsSort sort = new GoodsSort();
+					sort.setSortId(rs.getString("ID"));
+					sort.setSortname(rs.getString("name"));											
+					asort.add(sort);	
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			ConnDB.close(rs, stmt, conn);
+		}
+		
+		return asort;
+	}
+	
+	/**
+	 * 根据ID查询商品类别方法
+	 * @param sortId
+	 * @return
+	 */
+	public GoodsSort selGoodsSort(int sortId){
+		GoodsSort sort = null;
+		Connection conn = ConnDB.getConn();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from goodssort where ID=" + sortId;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs.next()){				
+				sort = new GoodsSort();				
+				sort.setSortId(rs.getString("ID"));
+				sort.setSortname(rs.getString("name"));				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			ConnDB.close(rs, stmt, conn);
+		}		
+		return sort;
+	}
+	
+	/**
+	 * 上架商品
+	 * @param sortId
+	 * @return
+	 */
+	public int ShangjiaGoods(String ID){
+		int res = 0;
+		GoodsInfo goods=null;
+		Connection conn =ConnDB.getConn();
+		PreparedStatement stmt = null;
+		String sql = "update goods set shangjia=? where ID=?";
+			try {
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, 1);
+				stmt.setString(2, ID);
+				res =stmt.executeUpdate();
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -29,7 +29,7 @@
 								<div class="col-md-12" >
 									<div class="panel panel-default">
 									  <!-- Default panel contents -->
-									  <div class="panel-heading">上架商品</div>
+									  <div class="panel-heading">修改商品信息</div>
 									  <div class="panel-body">
 									    <p>
 									    	Some default panel content here. Nulla vitae elit libero, a pharetra augue.
@@ -40,7 +40,7 @@
 									  </div>
 									
 									  <!-- Table -->
-									   <form action="#" method="post">
+									  <form action="#" method="post">
 									  <table class="table" >
 									    <thead>
 									    	<tr>
@@ -52,22 +52,22 @@
 									    		<th>价格</th>
 									    		<th>描述</th>
 									    		<th>状态</th>
-									    		
-									    		
+									    		<th>图片</th>
 									    	</tr>
 									    </thead>
 									    <tbody id="table" style="text-align: center;">
 									    	<tr>
-									    		<td> 21 </td>
-									    		<td> 2111 </td>
-									    		<td> 21111 </td>
-									    		<td> 211111 </td>
-									    		<td> 2111111 </td>
-									    		<td> 21111111</td>
-									    		<td> 211111111 </td>
-									    		<td> <input type="button"  value="上架" ></td>
-									    		
-									    		
+									    		<td> <input type="text" class="form-control" id="num" placeholder="请输入编号"> </td>
+									    		<td> <input type="text" class="form-control" id="name" placeholder="请输入名称"> </td>
+									    		<td> <input type="text" class="form-control" id="type" placeholder="请输入类型"> </td>
+									    		<td> <input type="text" class="form-control" id="kucun" placeholder="请输入库存"> </td>
+									    		<td> <input type="text" class="form-control" id="yishou" placeholder="请输入已售"> </td>
+									    		<td> <input type="text" class="form-control" id="price" placeholder="请输入价格"> </td>
+									    		<td> <input type="text" class="form-control" id="miaoshu" placeholder="请输入描述"> </td>
+									    		<td> <input type="checkbox" style="width:35px"></td>
+									    		<td> <input type="file" name="file" size="15" input enctype="multipart/form-data"maxlength="100"></td>
+									    		<td> <input type="button" value="+" onclick="addColumn()"></td>
+									    		<td> <input type="button" value="X" onclick="deletefile(this)"></td>
 									    	</tr> 	
 									    </tbody>
 									    <tfoot>

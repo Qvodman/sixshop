@@ -29,7 +29,7 @@
 								<div class="col-md-12" >
 									<div class="panel panel-default">
 									  <!-- Default panel contents -->
-									  <div class="panel-heading">上架商品</div>
+									  <div class="panel-heading">修改订单信息</div>
 									  <div class="panel-body">
 									    <p>
 									    	Some default panel content here. Nulla vitae elit libero, a pharetra augue.
@@ -40,20 +40,14 @@
 									  </div>
 									
 									  <!-- Table -->
-									   <form action="#" method="post">
+									  <form action="#" method="post">
 									  <table class="table" >
 									    <thead>
 									    	<tr>
-									    		<th>编号</th>
-									    		<th>名称</th>
-									    		<th>类型</th>
-									    		<th>库存</th>
-									    		<th>已售</th>
-									    		<th>价格</th>
-									    		<th>描述</th>
-									    		<th>状态</th>
-									    		
-									    		
+									    		<th>订单号</th>
+									    		<th>商品编号</th>
+									    		<th>用户ID</th>
+									    		<th>总价</th>
 									    	</tr>
 									    </thead>
 									    <tbody id="table" style="text-align: center;">
@@ -62,22 +56,10 @@
 									    		<td> 2111 </td>
 									    		<td> 21111 </td>
 									    		<td> 211111 </td>
-									    		<td> 2111111 </td>
-									    		<td> 21111111</td>
-									    		<td> 211111111 </td>
-									    		<td> <input type="button"  value="上架" ></td>
-									    		
-									    		
 									    	</tr> 	
 									    </tbody>
 									    <tfoot>
-									    	<tr>
-									    		<th colspan="10" style="text-align: center;">
-									    			<input type="button" value="确定">
-									    			<input type="button" value="取消">
-									    		</th>
-									    		
-									    	</tr>
+									  
 									    </tfoot>
 									  </table>
 									  </form>
@@ -100,6 +82,9 @@
 			    	
 			    	var tr = $(input).parents("tr");
 			    	tr.remove();
+			    }
+			      function display(status){
+			    	$("#tag").html(status);
 			    }
 		</script>
 	</body>
