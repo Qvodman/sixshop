@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<link href="css/normalize.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		
+		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+	</head>
+	<body>
+		<div class="container-fluid wrapper">
+  			<div class="main">
+  				<nav class="navbar navbar-inverse navigation" role="navigation">
+	  				<div class="container-fluid">
+	  					 <div class="navbar-header">
+	  					 	 <a class="navbar-brand" href="#">管理系统</a>
+	  					 </div>
+	  					  <div class="pull-right username">
+	  					  	<a>用户名</a>&nbsp;|&nbsp;<a>登出</a>
+	  					  </div>
+	  				</div>
+	  			</nav>
+  				<div class="col-xs-4 col-md-3 col-lg-2 menu clean-padding">
+	  				<div class="panel-group list-group" id="accordion" role="tablist" aria-multiselectable="false">
+					  <div class="panel panel-default">
+					    <div class="panel-heading " role="tab" id="headingOne">
+					      <h4 class="panel-title">
+					        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+					          <span class="glyphicon glyphicon-shopping-cart">&nbsp;商品管理</span>
+					        </a>
+					      </h4>
+					    </div>
+					    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+					      <div class="panel-body">
+						      	<div class="list-group">
+								  <a href="#" class="list-group-item" id="1" onclick="reload('addgoods.html')">添加商品</a>
+								  <a href="#" class="list-group-item" id="2" onclick="reload('shangjia.html')">上架商品</a>
+								  <a href="#" class="list-group-item" id="3" onclick="reload()">下架商品</a>
+								  <a href="#" class="list-group-item" id="4" onclick="reload()">修改商品</a>
+								</div>
+					      </div>
+					    </div>
+					  </div>
+					  <div class="panel panel-default ">
+					    <div class="panel-heading" role="tab" id="headingTwo">
+					      <h4 class="panel-title">
+					        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+					         	 <span class="glyphicon glyphicon-folder-open">&nbsp;订单管理</span>
+					        </a>
+					      </h4>
+					    </div>
+					    
+					  </div>
+					  <div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingThree">
+					      <h4 class="panel-title">
+					        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+					        	  <span class="glyphicon glyphicon-user">&nbsp;会员管理</span>
+					        </a>
+					      </h4>
+					    </div>
+					    
+					  </div>
+					  <div class="panel panel-default">
+					    <div class="panel-heading" role="tab" id="headingFour">
+					      <h4 class="panel-title">
+					        <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+					        	<span class="glyphicon glyphicon-lock">&nbsp;权限管理</span>
+					        </a>
+					      </h4>
+					    </div>
+					    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+					      <div class="panel-body">
+						       <div class="list-group">
+								  <a href="#" class="list-group-item">添加管理员</a>
+								  <a href="#" class="list-group-item">删除管理员</a>
+								  <a href="#" class="list-group-item">修改管理员权限</a>
+								</div>
+					      </div>
+					    </div>
+					  </div>
+					   
+					</div>
+		  		</div>
+		  		<div class="col-xs-8 col-md-9 col-lg-10 content">
+		  			<iframe class="main-content" name="Info1" id="Info1" src="#" width="100%" frameborder="0" style="display: none;" ></iframe>	
+		  			
+		  		</div>
+  			</div>
+  			
+		</div>
+			
+	</body>
+	<script>
+		function reload(url)
+		{
+			$("#Info1").attr("src",url);
+			$("#Info1").attr("style","block");
+		}
+	</script>
+</html>

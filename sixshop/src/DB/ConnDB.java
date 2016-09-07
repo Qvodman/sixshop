@@ -2,56 +2,53 @@ package DB;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * 用于连接数据库的类
  * @author Administrator
  *
  */
-
 public class ConnDB {
-	private String dbUrl = "jdbc:mysql://localhost:3306/eshop?useUnicode=true&characterEncoding=utf-8";
-	private String dbUser = "root";
-	private String dbPwd = "123456";
-	
-	//加载驱动类
-	public ConnDB () throws Exception{
-	     Class.forName("com.mysql.jdbc.Driver");
+	private static final String url = "jdbc:mysql://localhost:3306/eshop?useUnicode=true&characterEncoding=utf-8";
+	/**
+	 * 获取连接的方法
+	 * @return
+	 */
+	public static Connection getConn(){
+		Connection conn = null;
+		//加载驱动
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(url,"root","123456");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return conn;
 	}
-	
-	//建立数据库连接，登陆数据库
-	public Connection getConnection()throws Exception{
-		return DriverManager.getConnection(dbUrl,dbUser,dbPwd);
+	/**
+	 * 关闭连接的方法
+	 * @param rs
+	 * @param stmt
+	 * @param conn
+	 */
+	public static void close(ResultSet rs,Statement stmt,Connection conn){
+		try {
+			if(rs != null)			
+				rs.close();
+			if(stmt !=null)
+				stmt.close();
+			if(conn != null)
+				conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-	
-	//关闭数据库连接
-	public void closeConnection(Connection con){
-	    try{
-	        if(con!=null) con.close();
-	      }catch(Exception e){
-	        e.printStackTrace();
-	      }
-	}
-	
-	
-	public void closePrepStmt(PreparedStatement prepStmt){
-	    try{
-	        if(prepStmt!=null) prepStmt.close();
-	      }catch(Exception e){
-	        e.printStackTrace();
-	      }
-	  }
-
-	public void closeResultSet(ResultSet rs){
-	    try{
-	        if(rs!=null) {
-	        	rs.close();
-	        	}
-	      }catch(Exception e){
-	        e.printStackTrace();
-	      }
-	  }
-
 }
