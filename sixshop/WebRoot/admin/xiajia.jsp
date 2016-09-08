@@ -115,14 +115,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        		sort =ac.selGoodsSort(sortid);           	
                    %> 
 									    	<tr>
-									    		<td style="border-left:#D8E7F6 1px solid;"><%=goods.getGoodsID() %></td>					
+									    		<td><%=goods.getGoodsID() %></td>					
 												<td><%=goods.getGoodsName() %></td>
 												<td><%=sort.getSortname() %></td>
 												<td><%=goods.getGoodsKucun() %></td>
 												<td><%=goods.getGoodsYishou() %></td>
 												<td><%=goods.getGoodsPrice() %></td>
 												<td><%=goods.getGoodsMiaosu() %></td>
-												<td> <input type="button"  value="下架" ></td>
+												<td> <input type="button" onclick="xiajiaGoods('<%=goods.getGoodsID() %>')" value="下架" ></td>
 												<%}%>
 												
 												</td>
@@ -134,18 +134,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									    	</tr> 	
 									    </tbody>
 									    <tfoot>
-									    	<tr>
-									    		<th colspan="10" style="text-align: center;">
-									    			<input type="button" value="确定">
-									    			<input type="button" value="取消">
-									    		</th>
-									    		<tr>
-                  		<td style="border-left:#CFE0F0 1px solid;" colspan="9">
-                  			<a href="shangjia.jsp?pageNow=1">首页</a>
-                  			<a href="shangjia.jsp?pageNow=<%=pageNow-1 %>">上一页</a>                  			
+									 
+                  		<td style="border-left:#CFE0F0 1px solid;" colspan="9" style="text-align: center;">
+                  			<a href="xiajia.jsp?pageNow=1">首页</a>
+                  			<a href="xiajia.jsp?pageNow=<%=pageNow-1 %>">上一页</a>                  			
                   			<font style="color: red; font-size: 12px;"><%=pageNow %>/<%=pageCount %></font>
-                  			<a href="shangjia.jsp?pageNow=<%=pageNow+1 %>">下一页</a>
-                  			<a href="shangjia.jsp?pageNow=<%=pageCount %>">尾页</a>
+                  			<a href="xiajia.jsp?pageNow=<%=pageNow+1 %>">下一页</a>
+                  			<a href="xiajia.jsp?pageNow=<%=pageCount %>">尾页</a>
                   			<font style="color: red; font-size: 12px;">到第</font><input type="text" style="width: 20px;height: 20px;" id="pageNow"><font style="color: red; font-size: 12px;">页</font>
                   			<a href="javascript:pageGo()">跳转</a>                  			
                   		</td>
@@ -173,6 +168,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	
 			    	var tr = $(input).parents("tr");
 			    	tr.remove();
+			    }
+			     function xiajiaGoods(id){
+				    $.ajax({
+				    	url:"Admin_XiajiaServlet",
+				    	method:"post",
+				    	data:{id:id},
+				    	success:function(data){
+				    		alert(data);
+				    		location.reload();
+				    	}
+				    });
 			    }
 		</script>
 	</body>

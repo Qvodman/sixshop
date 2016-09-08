@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(pageNow >= pageCount){
 		pageNow = pageCount;
 	}
-	ArrayList<GoodsInfo> agoods = gc.getShangjiaGoodsForPage(pageSize,pageNow);
+	ArrayList<GoodsInfo> agoods = gc.getGoodsForPage(pageSize,pageNow);
 %>
   <script type="text/javascript">
   	function pageGo(){
@@ -44,9 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
   		window.location.href="shangjia.jsp?pageNow=" + pageNow.value;
   	}
-  </script>
-
-
+</script>
 <!DOCTYPE html>
 <html lang="zh-CN">
 	<head>
@@ -78,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="col-md-12" >
 									<div class="panel panel-default">
 									  <!-- Default panel contents -->
-									  <div class="panel-heading">上架商品</div>
+									  <div class="panel-heading">修改商品信息</div>
 									  <div class="panel-body">
 									    <p>
 									    	Some default panel content here. Nulla vitae elit libero, a pharetra augue.
@@ -89,7 +87,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									  </div>
 									
 									  <!-- Table -->
-									   <form action="Admin_ShangjiaServlet" method="post">
+									  <form action="#" method="post">
 									  <table class="table" >
 									    <thead>
 									    	<tr>
@@ -101,50 +99,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									    		<th>价格</th>
 									    		<th>描述</th>
 									    		<th>状态</th>
-									    		
-									    		
+									    		<th>图片</th>
 									    	</tr>
 									    </thead>
-	
 									    <tbody id="table" style="text-align: center;">
-									     <%
-                  	for(GoodsInfo goods : agoods){
-                  		int sortid =Integer.parseInt(goods.getGoodsType());
-	                  	GoodsSort sort = new GoodsSort();
-		        		AdminCtrl ac = new AdminCtrl();
-		        		sort =ac.selGoodsSort(sortid);           	
-                   %> 
-									    	<tr>
-									    		<td><%=goods.getGoodsID() %>					
-												<td><%=goods.getGoodsName() %></td>
-												<td><%=sort.getSortname() %></td>
-												<td><%=goods.getGoodsKucun() %></td>
-												<td><%=goods.getGoodsYishou() %></td>
-												<td><%=goods.getGoodsPrice() %></td>
-												<td><%=goods.getGoodsMiaosu() %></td>
-												<td> <input type="button" onclick="shangjiaGoods('<%=goods.getGoodsID() %>')" value="上架" ></td>
-												<%}%>
-												
-												
-                    							<td>
-
-									    		
-									    		
-									    		
-									    	</tr> 	
+									    <%
+						                  	for(GoodsInfo goods : agoods){
+						                  		int sortid =Integer.parseInt(goods.getGoodsType());
+							                  	GoodsSort sort = new GoodsSort();
+								        		AdminCtrl ac = new AdminCtrl();
+								        		sort =ac.selGoodsSort(sortid);           	
+						                   %> 
+										<tr>
+												<td><input type="text" class="form-control" id="id" name="id" placeholder="请输入编号" value="<%=goods.getGoodsID() %>"></td>
+												<td><input type="text" class="form-control" id="name" name="name" placeholder="请输入名称" value="<%=goods.getGoodsName() %>"></td>
+												<td><input type="text" class="form-control" id="type" name="type" placeholder="请输入类型" value="<%=sort.getSortname() %>"></td>
+												<td><input type="text" class="form-control" id="kucun" name="kucun" placeholder="请输入库存" value="<%=goods.getGoodsKucun() %>"></td>
+												<td><input type="text" class="form-control" id="yishou" name="yishou" placeholder="0" value="<%=goods.getGoodsYishou() %>" disabled></td>
+   												<td><input type="text" class="form-control" id="price" name="price" placeholder="请输入价格" value="<%=goods.getGoodsPrice() %>"></td>
+												<td><input type="text" class="form-control" id="miaoshu" name="miaosu" placeholder="请输入描述" value="<%=goods.getGoodsMiaosu() %>"></td>
+												<td><input type="checkbox" style="width:35px" value="" name="shangjia"></td>
+												<td><input type="file" name="file" size="15" input enctype="multipart/form-data" maxlength="100" name="image"></td>
+												<td><input type="button" value="+" onclick="addColumn()"></td>
+												<td><input type="button" value="X" onclick="deletefile(this)"></td>
+											</tr>
+											<%}%>	
 									    </tbody>
 									    <tfoot>
-									    	
-                  		<td style="border-left:#CFE0F0 1px solid;" colspan="9" style="text-align: center;">
-                  			<a href="shangjia.jsp?pageNow=1">首页</a>
-                  			<a href="shangjia.jsp?pageNow=<%=pageNow-1 %>">上一页</a>                  			
+									    	<td style="border-left:#CFE0F0 1px solid;" colspan="9" style="text-align: center;">
+                  			<a href="xiugai.jsp?pageNow=1">首页</a>
+                  			<a href="xiugai.jsp?pageNow=<%=pageNow-1 %>">上一页</a>                  			
                   			<font style="color: red; font-size: 12px;"><%=pageNow %>/<%=pageCount %></font>
-                  			<a href="shangjia.jsp?pageNow=<%=pageNow+1 %>">下一页</a>
-                  			<a href="shangjia.jsp?pageNow=<%=pageCount %>">尾页</a>
+                  			<a href="xiugai.jsp?pageNow=<%=pageNow+1 %>">下一页</a>
+                  			<a href="xiugai.jsp?pageNow=<%=pageCount %>">尾页</a> 
                   			<font style="color: red; font-size: 12px;">到第</font><input type="text" style="width: 20px;height: 20px;" id="pageNow"><font style="color: red; font-size: 12px;">页</font>
                   			<a href="javascript:pageGo()">跳转</a>                  			
                   		</td>
-                  </tr>
+									    		 
 									    	</tr>
 									    </tfoot>
 									  </table>
@@ -169,19 +160,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	var tr = $(input).parents("tr");
 			    	tr.remove();
 			    }
-			    function shangjiaGoods(id){
-				    $.ajax({
-				    	url:"Admin_ShangjiaServlet",
-				    	method:"post",
-				    	data:{id:id},
-				    	success:function(data){
-				    		alert(data);
-				    		location.reload();
-				    	}
-				    });
-			    }
-			    
 		</script>
 	</body>
 </html>
-

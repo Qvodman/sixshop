@@ -294,5 +294,31 @@ public class AdminCtrl {
 			}
 		return res;
 	}
+	
+	/**
+	 * œ¬º‹…Ã∆∑
+	 * @param sortId
+	 * @return
+	 */
+	public int XiajiaGoods(String ID){
+		int res = 0;
+		GoodsInfo goods=null;
+		Connection conn =ConnDB.getConn();
+		PreparedStatement stmt = null;
+		String sql = "update goods set shangjia=? where ID=?";
+			try {
+				stmt = conn.prepareStatement(sql);
+				stmt.setInt(1, 0);
+				stmt.setString(2, ID);
+				res =stmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				ConnDB.close(null, stmt, conn);
+			}
+		return res;
+	}
 }
 

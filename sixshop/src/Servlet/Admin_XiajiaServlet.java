@@ -12,7 +12,7 @@ import DAO.AdminCtrl;
 import DAO.GoodsCtrl;
 import Entity.GoodsInfo;
 
-public class Admin_ShangjiaServlet extends HttpServlet {
+public class Admin_XiajiaServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -22,7 +22,7 @@ public class Admin_ShangjiaServlet extends HttpServlet {
 	/**
 	 * Constructor of the object.
 	 */
-	public Admin_ShangjiaServlet() {
+	public Admin_XiajiaServlet() {
 		super();
 	}
 
@@ -72,13 +72,13 @@ public class Admin_ShangjiaServlet extends HttpServlet {
 
 
 		
-		int res =ac.ShangjiaGoods(goodsId);
+		int res =ac.XiajiaGoods(goodsId);
 		if(res>0){
-			out.print("上架成功！");
+			out.print("下架成功！");
 			//out.print("<script>alert('上架成功！');window.location.href='../admin/shangjia.jsp';</script>");
 		}else{
 			//out.print("<script>alert('上架失败！');window.history.back();</script>");
-			out.print("上架失败！");
+			out.print("下架失败！");
 		}
 	}
 

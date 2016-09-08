@@ -50,6 +50,51 @@ public class GoodsCtrl {
 			}
 		return res;
 	}
+	/*==商品列表数据分页==*/
+	/**
+	 * 展示所有商品
+	 * 根据当前页数和每页显示的行数来查询相应的结果
+	 * 
+	 * @param pageSize
+	 *            每页显示的行数
+	 * @param pageNow
+	 *            当前的页数
+	 * @return
+	 */
+	
+	public ArrayList<GoodsInfo> getGoodsForPage(int pageSize, int pageNow) {
+		ArrayList<GoodsInfo> agoods = null;
+		Connection conn = ConnDB.getConn();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from goods order by ID asc limit "+(pageNow-1)+","+pageSize+"";
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			while(rs.next()){
+				if(agoods==null){
+					agoods=new ArrayList<GoodsInfo>();					
+				}
+				GoodsInfo goods = new GoodsInfo();
+				goods.setGoodsID(rs.getString("ID"));
+				goods.setGoodsName(rs.getString("name"));
+				goods.setGoodsType(rs.getString("type"));
+				goods.setGoodsImage(rs.getString("image"));
+				goods.setGoodsKucun(rs.getInt("kucun"));
+				goods.setGoodsYishou(rs.getInt("yishou"));
+				goods.setGoodsPrice(rs.getDouble("price"));				
+				goods.setGoodsMiaosu(rs.getString("miaosu"));
+				goods.setGoodsShangjia(rs.getInt("shangjia"));
+				agoods.add(goods);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			ConnDB.close(rs, stmt, conn);
+		}
+		return agoods;
+	}
 	
 	/*==商品列表数据分页==*/
 	/**

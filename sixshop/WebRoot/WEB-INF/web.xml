@@ -33,6 +33,16 @@
     <url-pattern>/admin/Admin_ShangjiaServlet</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>Admin_XiajiaServlet</servlet-name>
+    <servlet-class>Servlet.Admin_XiajiaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Admin_XiajiaServlet</servlet-name>
+    <url-pattern>/admin/Admin_XiajiaServlet</url-pattern>
+  </servlet-mapping>
+  
   
   
   
