@@ -50,6 +50,39 @@ public class GoodsCtrl {
 			}
 		return res;
 	}
+	
+	/**
+	 * 修改商品方法
+	 * @param goods
+	 * @return
+	 */
+	public int xiugaiGoods(GoodsInfo goods){
+		int res =0;
+		Connection conn =ConnDB.getConn();
+		PreparedStatement stmt =null;
+		String sql ="update goods set name=?,type=?,image=?,kucun=?,yishou=?,price=?,miaosu=?,shangjia=? where ID=?";
+			try {
+				stmt =conn.prepareStatement(sql);
+				stmt.setString(1, goods.getGoodsName());
+				stmt.setString(2, goods.getGoodsType());
+				//stmt.setString(3, goods.getGoodsImage());
+				stmt.setString(3, "1");
+				stmt.setInt(4, goods.getGoodsKucun());
+				stmt.setInt(5, goods.getGoodsYishou());
+				stmt.setDouble(6, goods.getGoodsPrice());
+				stmt.setString(7, goods.getGoodsMiaosu());
+				stmt.setInt(8, goods.getGoodsShangjia());
+				stmt.setString(9, goods.getGoodsID());
+				res =stmt.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}finally{
+				ConnDB.close(null, stmt, conn);
+			}
+		return res;
+	}
+	
 	/*==商品列表数据分页==*/
 	/**
 	 * 展示所有商品

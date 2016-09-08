@@ -72,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</style>
 	</head>
 	<body>
-		<div class="col-xs-8 col-md-9 col-lg-12">
+		<div class="col-xs-8 col-md-12 col-lg-12">
 		  			<div> 
 							<div class="row">
 								<div class="col-md-12" >

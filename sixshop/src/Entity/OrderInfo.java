@@ -10,7 +10,7 @@ public class OrderInfo {
 	private String ID;
 	private String GoodsID;
 	private String UserID;
-	private int Numble;
+	private int Number;
 	private float Count;
 	private int Paid;
 	
@@ -35,11 +35,11 @@ public class OrderInfo {
 		this.UserID = UserID;
 	}
 	
-	public int getNumble() {
-		return Numble;
+	public int getNumber() {
+		return Number;
 	}
-	public void setUserID(int Numble) {
-		this.Numble = Numble;
+	public void setUserID(int Number) {
+		this.Number = Number;
 	}
 	
 	public float getCount() {

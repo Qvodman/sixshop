@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</style>
 	</head>
 	<body>
-		<div class="col-xs-8 col-md-9 col-lg-12">
+		<div class="col-xs-8 col-md-12 col-lg-12">
 		  			<div> 
 							<div class="row">
 								<div class="col-md-12" >
@@ -111,17 +111,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								        		sort =ac.selGoodsSort(sortid);           	
 						                   %> 
 										<tr>
-												<td><input type="text" class="form-control" id="id" name="id" placeholder="请输入编号" value="<%=goods.getGoodsID() %>"></td>
-												<td><input type="text" class="form-control" id="name" name="name" placeholder="请输入名称" value="<%=goods.getGoodsName() %>"></td>
-												<td><input type="text" class="form-control" id="type" name="type" placeholder="请输入类型" value="<%=sort.getSortname() %>"></td>
-												<td><input type="text" class="form-control" id="kucun" name="kucun" placeholder="请输入库存" value="<%=goods.getGoodsKucun() %>"></td>
-												<td><input type="text" class="form-control" id="yishou" name="yishou" placeholder="0" value="<%=goods.getGoodsYishou() %>" disabled></td>
-   												<td><input type="text" class="form-control" id="price" name="price" placeholder="请输入价格" value="<%=goods.getGoodsPrice() %>"></td>
-												<td><input type="text" class="form-control" id="miaoshu" name="miaosu" placeholder="请输入描述" value="<%=goods.getGoodsMiaosu() %>"></td>
-												<td><input type="checkbox" style="width:35px" value="" name="shangjia"></td>
-												<td><input type="file" name="file" size="15" input enctype="multipart/form-data" maxlength="100" name="image"></td>
-												<td><input type="button" value="+" onclick="addColumn()"></td>
-												<td><input type="button" value="X" onclick="deletefile(this)"></td>
+												<td><input type="text" class="form-control" id="id" name="id" value="<%=goods.getGoodsID() %>" disabled></td>
+												<td><input type="text" class="form-control" id="name" name="name" value="<%=goods.getGoodsName() %>"></td>
+												<%-- <td><input type="text" class="form-control" id="type" name="type" placeholder="请输入类型" value="<%=sort.getSortname() %>"></td> --%>
+												<td><select class="form-control" id="type" name="type">
+													  <option value ="<%=sort.getSortId() %>"><%=sort.getSortname() %></option>
+													  <%
+														Connection conn = ConnDB.getConn();
+														Statement stmt = null;
+														ResultSet rs = null;
+														String sql = "select * from goodssort";
+														stmt = conn.createStatement();
+														rs = stmt.executeQuery(sql);
+														while(rs.next()){
+															out.print("<option value ='"+rs.getString("ID")+"'>"+rs.getString("name")+"</option>");
+														}
+														%>
+													</select>
+												</td>
+												<td><input type="text" class="form-control" id="kucun" name="kucun" value="<%=goods.getGoodsKucun() %>"></td>
+												<td><input type="text" class="form-control" id="yishou" name="yishou" value="<%=goods.getGoodsYishou() %>" disabled></td>
+   												<td><input type="text" class="form-control" id="price" name="price" value="<%=goods.getGoodsPrice() %>"></td>
+												<td><input type="text" class="form-control" id="miaosu" name="miaosu" value="<%=goods.getGoodsMiaosu() %>"></td>
+												<td><input type="text" class="form-control" id="shangjia" name="shangjia" value="<%=goods.getGoodsShangjia()%>"disabled></td>
+												<td><input type="file" name="file" size="15" enctype="multipart/form-data" maxlength="100" name="image"></td>
+												<td><input type="button" value="修改" onclick="xiugaiGoods('<%=goods.getGoodsID()%>')"></td>
+												<td><input type="reset" value="重置"></td>
 											</tr>
 											<%}%>	
 									    </tbody>
@@ -159,6 +174,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	
 			    	var tr = $(input).parents("tr");
 			    	tr.remove();
+			    }
+			    function xiugaiGoods(id){
+			    
+			    var name=$("#name").val(); 
+			    var type=$("#type").val(); 
+			    var kucun=$("#kucun").val(); 
+			    var yishou=$("#yishou").val(); 
+			    var price=$("#price").val(); 
+			    var miaosu=$("#miaosu").val(); 
+			    var shangjia=$("#shangjia").val(); 
+
+				    $.ajax({
+				    	url:"Admin_XiugaiGoodsServlet",
+				    	method:"post",
+				    	data:{id:id,name:name,type:type,kucun:kucun,yishou:yishou,price:price,miaosu:miaosu,shangjia:shangjia},
+				    	success:function(data){
+				    		alert(data);
+				    		location.reload();
+				    	}
+				    });
 			    }
 		</script>
 	</body>

@@ -32,9 +32,8 @@
     <servlet-name>Admin_ShangjiaServlet</servlet-name>
     <url-pattern>/admin/Admin_ShangjiaServlet</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
-    <servlet-name>Admin_XiajiaServlet</servlet-name>
+     <servlet>
+  <servlet-name>Admin_XiajiaServlet</servlet-name>
     <servlet-class>Servlet.Admin_XiajiaServlet</servlet-class>
   </servlet>
 
@@ -42,6 +41,18 @@
     <servlet-name>Admin_XiajiaServlet</servlet-name>
     <url-pattern>/admin/Admin_XiajiaServlet</url-pattern>
   </servlet-mapping>
+ 
+  <servlet>
+    <servlet-name>Admin_XiugaiGoodsServlet</servlet-name>
+    <servlet-class>Servlet.Admin_XiugaiGoodsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Admin_XiugaiGoodsServlet</servlet-name>
+    <url-pattern>/admin/Admin_XiugaiGoodsServlet</url-pattern>
+  </servlet-mapping>
+  
+ 
   
   
   
