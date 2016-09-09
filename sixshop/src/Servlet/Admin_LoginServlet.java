@@ -7,21 +7,22 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import DAO.GoodsCtrl;
-import Entity.GoodsInfo;
+import DAO.AdminCtrl;
+import Entity.AdminInfo;
 
-public class Admin_XiugaiGoodsServlet extends HttpServlet {
+public class Admin_LoginServlet extends HttpServlet {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8268297261584578758L;
+	private static final long serialVersionUID = 9178312609590655663L;
 
 	/**
 	 * Constructor of the object.
 	 */
-	public Admin_XiugaiGoodsServlet() {
+	public Admin_LoginServlet() {
 		super();
 	}
 
@@ -66,36 +67,17 @@ public class Admin_XiugaiGoodsServlet extends HttpServlet {
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		
-		GoodsInfo goods = new GoodsInfo();
-		GoodsCtrl gc = new GoodsCtrl();
+		String adminUsername = request.getParameter("adminUsername");
+		String adminPassword = request.getParameter("adminPassword");
 		
-		String goodsId =request.getParameter("id");
-		String goodsName =request.getParameter("name");
-		String goodsSort =request.getParameter("type");
-		//String goodsImg =request.getParameter("image");
-		String goodsImg="1";
-		int goodsKucun =Integer.parseInt(request.getParameter("kucun"));
-		double goodsPrice =Double.parseDouble(request.getParameter("price"));
-		String goodsMiaosu =request.getParameter("miaosu");
-		int goodsShangjia =Integer.parseInt(request.getParameter("shangjia"));
-
-		goods.setGoodsID(goodsId);
-		goods.setGoodsName(goodsName);
-		goods.setGoodsType(goodsSort);
-		goods.setGoodsImage("1");
-		goods.setGoodsKucun(goodsKucun);
-		goods.setGoodsYishou(0);
-		goods.setGoodsPrice(goodsPrice);
-		goods.setGoodsMiaosu(goodsMiaosu);
-		goods.setGoodsShangjia(goodsShangjia);
-		
-		int res =gc.xiugaiGoods(goods);
-		if(res>0){
-			out.print("修改成功！");
-			//out.print("<script>alert('修改成功！');window.location.href='../admin/addgoods.jsp';</script>");
+		AdminCtrl ac = new AdminCtrl();
+		AdminInfo au =ac.login(adminUsername, adminPassword);
+		if(au!=null){
+			HttpSession session =request.getSession();
+			session.setAttribute("au",au);
+			response.sendRedirect("../admin/main.html");
 		}else{
-			out.print("修改失败！");
-			//out.print("<script>alert('修改失败！');window.history.back();</script>");
+			out.print("用户不存在或密码错误！");
 		}
 	}
 
@@ -109,5 +91,3 @@ public class Admin_XiugaiGoodsServlet extends HttpServlet {
 	}
 
 }
-
-

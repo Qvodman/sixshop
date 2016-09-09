@@ -1,7 +1,7 @@
 package Entity;
 
 /**
- * ¶©µ¥ĞÅÏ¢Àà
+ * è®¢å•ä¿¡æ¯ç±»
  * @author Qvodman
  *
  */
@@ -35,24 +35,28 @@ public class OrderInfo {
 		this.UserID = UserID;
 	}
 	
-	public int getNumber() {
+	
+	 public int getNumber() {
 		return Number;
 	}
-	public void setUserID(int Number) {
+	public void setNumber(int Number) {
 		this.Number = Number;
 	}
+	
 	
 	public float getCount() {
 		return Count;
 	}
-	public void setUserID(float Count) {
+	public void setCount(float Count) {
 		this.Count = Count;
 	}
 	
-	public int getPaid() {
+	
+	 public int getPaid() {
 		return Paid;
 	}
 	public void setPaid(int Paid) {
 		this.Paid = Paid;
 	}
+	
 }

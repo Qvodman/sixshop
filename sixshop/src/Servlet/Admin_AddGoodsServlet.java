@@ -91,9 +91,9 @@ public class Admin_AddGoodsServlet extends HttpServlet {
 		
 		int res =gc.addGoods(goods);
 		if(res>0){
-			out.print("<script>alert('Ìí¼Ó³É¹¦£¡');window.location.href='../admin/addgoods.jsp';</script>");
+			out.print("<script>alert('æ·»åŠ æˆåŠŸï¼');window.location.href='../admin/addgoods.jsp';</script>");
 		}else{
-			out.print("<script>alert('Ìí¼ÓÊ§°Ü£¡');window.history.back();</script>");
+			out.print("<script>alert('æ·»åŠ å¤±è´¥ï¼');window.history.back();</script>");
 		}
 	}
 

@@ -1,7 +1,7 @@
 package Entity;
 
 /**
- * 后台管理员信息类
+ * 鍚庡彴绠＄悊鍛樹俊鎭被
  * @author Qvodman
  *
  */

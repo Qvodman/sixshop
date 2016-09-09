@@ -11,11 +11,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	int pageSize = 10;//定义每页显示的条目数
 	int pageNow = 1;//默认显示第一页
 	int pageCount = 1;//默认只有1页
-	GoodsCtrl gc = new GoodsCtrl();
+	AdminCtrl ac= new AdminCtrl();
+	//GoodsCtrl gc=new GoodsCtrl();
+
 	if(request.getParameter("pageNow") != null)
 	pageNow = Integer.parseInt(request.getParameter("pageNow"));
 	//获取总页数
-	pageCount = gc.getXiajiaGoodsCount(pageSize);
+	pageCount = ac.getOrderCount(pageSize);
 	
 	//如果小于第一页，则显示第一页
 	if(pageNow <= 0){
@@ -25,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(pageNow >= pageCount){
 		pageNow = pageCount;
 	}
-	ArrayList<GoodsInfo> agoods = gc.getXiajiaGoodsForPage(pageSize,pageNow);
+	ArrayList<OrderInfo> aorder = ac.getOrderForPage(pageSize, pageNow);
 %>
   <script type="text/javascript">
   	function pageGo(){
@@ -42,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				pageNow.focus();
 				return;	
 			}
-  		window.location.href="shangjia.jsp?pageNow=" + pageNow.value;
+  		window.location.href="orderlist.jsp?pageNow=" + pageNow.value;
   	}
   </script>
 
@@ -78,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="col-md-12" >
 									<div class="panel panel-default">
 									  <!-- Default panel contents -->
-									  <div class="panel-heading">下架商品</div>
+									  <div class="panel-heading">订单信息</div>
 									  <div class="panel-body">
 									    <p>
 									    	Some default panel content here. Nulla vitae elit libero, a pharetra augue.
@@ -89,58 +91,52 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									  </div>
 									
 									  <!-- Table -->
-									   <form action="#" method="post">
+									  <form action="#" method="post">
 									  <table class="table" >
 									    <thead>
 									    	<tr>
-									    		<th>编号</th>
-									    		<th>名称</th>
-									    		<th>类型</th>
-									    		<th>库存</th>
-									    		<th>已售</th>
-									    		<th>价格</th>
-									    		<th>描述</th>
+									    		<th>订单号</th>
+									    		<th>商品编号</th>
+									    		<th>商品数量</th>
+									    		<th>用户ID</th>
+									    		<th>总价</th>
 									    		<th>状态</th>
-									    		
-									    		
 									    	</tr>
 									    </thead>
-	
 									    <tbody id="table" style="text-align: center;">
-									     <%
-                  	for(GoodsInfo goods : agoods){
-                  		int sortid =Integer.parseInt(goods.getGoodsType());
-	                  	GoodsSort sort = new GoodsSort();
-		        		AdminCtrl ac = new AdminCtrl();
-		        		sort =ac.selGoodsSort(sortid);           	
+									    <%
+                  	for(OrderInfo order : aorder){
+		  
+		        		          	
                    %> 
 									    	<tr>
-									    		<td><%=goods.getGoodsID() %></td>					
-												<td><%=goods.getGoodsName() %></td>
-												<td><%=sort.getSortname() %></td>
-												<td><%=goods.getGoodsKucun() %></td>
-												<td><%=goods.getGoodsYishou() %></td>
-												<td><%=goods.getGoodsPrice() %></td>
-												<td><%=goods.getGoodsMiaosu() %></td>
-												<td> <input type="button" onclick="xiajiaGoods('<%=goods.getGoodsID() %>')" value="下架" ></td>
-												<%}%>
+									    		<td><%=order.getOrderID() %></td>					
+												<td><%=order.getGoodsID()%></td>
+												<td><%=order.getNumber()%></td>
+												<td><%=order.getUserID()%></td>
+												<td><%=order.getCount() %></td>
+												<td><% if(order.getPaid()==1)
+													{  
+													    out.print("已支付");
+													}else
+													{
+														out.print("未支付");
+													}%></td>
 												
-												</td>
-                    							<td>
-
-									    		
-									    		
+												<%}%>
+														
 									    		
 									    	</tr> 	
 									    </tbody>
 									    <tfoot>
-									 
+									  				    	
                   		<td style="border-left:#CFE0F0 1px solid;" colspan="9" style="text-align: center;">
-                  			<a href="xiajia.jsp?pageNow=1">首页</a>
-                  			<a href="xiajia.jsp?pageNow=<%=pageNow>1?pageNow-1:1%>">上一页</a>                  			
+                  			<a href="orderlist.jsp?pageNow=1">首页</a>
+                 
+                  			<a href="orderlist.jsp?pageNow=<%=pageNow>1?pageNow-1:1%>">上一页</a>                  			
                   			<font style="color: red; font-size: 12px;"><%=pageNow %>/<%=pageCount %></font>
-                  			<a href="xiajia.jsp?pageNow=<%=pageNow==pageCount?pageNow:pageNow+1 %>">下一页</a>
-                  			<a href="xiajia.jsp?pageNow=<%=pageCount %>">尾页</a>
+                  			<a href="orderlist.jsp?pageNow=<%=pageNow==pageCount?pageNow:pageNow+1 %>">下一页</a>
+                  			<a href="orderlist.jsp?pageNow=<%=pageCount %>">尾页</a>
                   			<font style="color: red; font-size: 12px;">到第</font><input type="text" style="width: 20px;height: 20px;" id="pageNow"><font style="color: red; font-size: 12px;">页</font>
                   			<a href="javascript:pageGo()">跳转</a>                  			
                   		</td>
@@ -169,16 +165,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	var tr = $(input).parents("tr");
 			    	tr.remove();
 			    }
-			     function xiajiaGoods(id){
-				    $.ajax({
-				    	url:"Admin_XiajiaServlet",
-				    	method:"post",
-				    	data:{id:id},
-				    	success:function(data){
-				    		alert(data);
-				    		location.reload();
-				    	}
-				    });
+			      function display(status){
+			    	$("#tag").html(status);
 			    }
 		</script>
 	</body>

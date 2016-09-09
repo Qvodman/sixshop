@@ -7,19 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- * ÓÃÓÚÁ¬½ÓÊı¾İ¿âµÄÀà
+ * ç”¨äºè¿æ¥æ•°æ®åº“çš„ç±»
  * @author Administrator
  *
  */
 public class ConnDB {
 	private static final String url = "jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf-8";
 	/**
-	 * »ñÈ¡Á¬½ÓµÄ·½·¨
+	 * è·å–è¿æ¥çš„æ–¹æ³•
 	 * @return
 	 */
 	public static Connection getConn(){
 		Connection conn = null;
-		//¼ÓÔØÇı¶¯
+		//åŠ è½½é©±åŠ¨
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(url,"root","123456");
@@ -33,7 +33,7 @@ public class ConnDB {
 		return conn;
 	}
 	/**
-	 * ¹Ø±ÕÁ¬½ÓµÄ·½·¨
+	 * å…³é—­è¿æ¥çš„æ–¹æ³•
 	 * @param rs
 	 * @param stmt
 	 * @param conn

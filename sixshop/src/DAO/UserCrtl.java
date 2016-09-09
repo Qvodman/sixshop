@@ -11,7 +11,7 @@ import DB.*;
 import Entity.*;
 
 /**
- * ÓÃ»§ĞÅÏ¢²Ù×÷Àà
+ * ç”¨æˆ·ä¿¡æ¯æ“ä½œç±»
  * @author Qvodman
  *
  */
@@ -19,7 +19,7 @@ import Entity.*;
 public class UserCrtl {
 
 	/**
-	 * ÓÃ»§×¢²á·½·¨
+	 * ç”¨æˆ·æ³¨å†Œæ–¹æ³•
 	 * @param user
 	 * @return
 	 */

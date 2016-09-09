@@ -12,7 +12,7 @@ import Entity.*;
 import DB.*;
 
 /**
- * ºóÌ¨¹¦ÄÜÀà
+ * åå°åŠŸèƒ½ç±»
  * @author Administrator
  *
  */
@@ -20,7 +20,7 @@ import DB.*;
 public class AdminCtrl {
 	
 	/**
-	 * ºóÌ¨¹ÜÀíÔ±µÇÂ¼·½·¨
+	 * åå°ç®¡ç†å‘˜ç™»å½•æ–¹æ³•
 	 * @param userName
 	 * @param userPwd
 	 * @return
@@ -49,14 +49,14 @@ public class AdminCtrl {
 		
 	}
 	
-	/*==ÓÃ»§ÁĞ±íÊı¾İ·ÖÒ³==*/
+	/*==ç”¨æˆ·åˆ—è¡¨æ•°æ®åˆ†é¡µ==*/
 	/**
-	 * ¸ù¾İµ±Ç°Ò³ÊıºÍÃ¿Ò³ÏÔÊ¾µÄĞĞÊıÀ´²éÑ¯ÏàÓ¦µÄ½á¹û
+	 * æ ¹æ®å½“å‰é¡µæ•°å’Œæ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°æ¥æŸ¥è¯¢ç›¸åº”çš„ç»“æœ
 	 * 
 	 * @param pageSize
-	 *            Ã¿Ò³ÏÔÊ¾µÄĞĞÊı
+	 *            æ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°
 	 * @param pageNow
-	 *            µ±Ç°µÄÒ³Êı
+	 *            å½“å‰çš„é¡µæ•°
 	 * @return
 	 */
 	public ArrayList<UserInfo> getUserForPage(int pageSize, int pageNow) {
@@ -95,13 +95,13 @@ public class AdminCtrl {
 		return al;
 	}
 	/**
-	 * »ñÈ¡×ÜÒ³Êı
+	 * è·å–æ€»é¡µæ•°
 	 * @param pageSize
 	 * @return
 	 */
 	public int getPageCount(int pageSize){
 		int pageCount = 0;
-		int userCount = 0;//»ñÈ¡µ½ÓÃ»§µÄ×ÜÊı
+		int userCount = 0;//è·å–åˆ°ç”¨æˆ·çš„æ€»æ•°
 		Connection conn = ConnDB.getConn();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -112,7 +112,7 @@ public class AdminCtrl {
 			if(rs.next()){
 				userCount = rs.getInt("userCount");
 			}
-			//Ò³Êı¼ÆËã
+			//é¡µæ•°è®¡ç®—
 			if(userCount % pageSize == 0){
 				pageCount = userCount / pageSize;
 			}else{
@@ -128,7 +128,7 @@ public class AdminCtrl {
 	}
 	
 	/**
-	 * ĞŞ¸ÄÓÃ»§×ÊÁÏ·½·¨
+	 * ä¿®æ”¹ç”¨æˆ·èµ„æ–™æ–¹æ³•
 	 */
 	public int updateUser(UserInfo user){
 		int res = 0;
@@ -158,7 +158,7 @@ public class AdminCtrl {
 	}
 	
 	/**
-	 * ¸ù¾İIDÉ¾³ıÓÃ»§ĞÅÏ¢
+	 * æ ¹æ®IDåˆ é™¤ç”¨æˆ·ä¿¡æ¯
 	 * @param userId
 	 * @return
 	 */
@@ -188,7 +188,7 @@ public class AdminCtrl {
 	
 	
 	/**
-	 * Ìí¼ÓÉÌÆ··ÖÀà·½·¨
+	 * æ·»åŠ å•†å“åˆ†ç±»æ–¹æ³•
 	 * @param sort
 	 * @return
 	 */
@@ -211,7 +211,7 @@ public class AdminCtrl {
 	}
 	
 	/**
-	 * ²éÑ¯ËùÓĞÉÌÆ·Àà±ğ
+	 * æŸ¥è¯¢æ‰€æœ‰å•†å“ç±»åˆ«
 	 * @return
 	 */
 	public ArrayList<GoodsSort> selsort(){
@@ -242,7 +242,7 @@ public class AdminCtrl {
 	}
 	
 	/**
-	 * ¸ù¾İID²éÑ¯ÉÌÆ·Àà±ğ·½·¨
+	 * æ ¹æ®IDæŸ¥è¯¢å•†å“ç±»åˆ«æ–¹æ³•
 	 * @param sortId
 	 * @return
 	 */
@@ -270,7 +270,7 @@ public class AdminCtrl {
 	}
 	
 	/**
-	 * ÉÏ¼ÜÉÌÆ·
+	 * ä¸Šæ¶å•†å“
 	 * @param sortId
 	 * @return
 	 */
@@ -296,7 +296,7 @@ public class AdminCtrl {
 	}
 	
 	/**
-	 * ÏÂ¼ÜÉÌÆ·
+	 * ä¸‹æ¶å•†å“
 	 * @param sortId
 	 * @return
 	 */
@@ -320,5 +320,80 @@ public class AdminCtrl {
 			}
 		return res;
 	}
+	/*==å•†å“åˆ—è¡¨æ•°æ®åˆ†é¡µ==*/
+	/**
+	 * å±•ç¤ºæ‰€æœ‰å•†å“
+	 * æ ¹æ®å½“å‰é¡µæ•°å’Œæ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°æ¥æŸ¥è¯¢ç›¸åº”çš„ç»“æœ
+	 * 
+	 * @param pageSize
+	 *            æ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°
+	 * @param pageNow
+	 *            å½“å‰çš„é¡µæ•°
+	 * @return
+	 */
+	
+	public ArrayList<OrderInfo> getOrderForPage(int pageSize, int pageNow) {
+		ArrayList<OrderInfo> aorder = null;
+		Connection conn = ConnDB.getConn();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from TOrder order by ID ASC limit "+(pageNow-1)*pageSize+","+pageSize+"";
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			while(rs.next()){
+				if(aorder==null){
+					aorder=new ArrayList<OrderInfo>();					
+				}
+				OrderInfo order=new OrderInfo();
+				order.setOrderID(rs.getString("ID"));
+				order.setGoodsID(rs.getString("GoodsID"));
+				order.setUserID(rs.getString("UserID"));
+				order.setNumber(rs.getInt("Number"));
+				order.setCount(rs.getFloat("Count"));
+				order.setPaid(rs.getInt("Paid"));
+				aorder.add(order);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			ConnDB.close(rs, stmt, conn);
+		}
+		return aorder;
+	}
+	/**
+	 * è·å–è®¢å•æ€»é¡µæ•°
+	 * @param pageSize
+	 * @return
+	 */
+	public int getOrderCount(int pageSize){
+		int pageCount = 0;
+		int OrderCount = 0;//è·å–åˆ°å•†å“çš„æ€»æ•°
+		Connection conn = ConnDB.getConn();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) as OrderCount from TOrder";
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs.next()){
+				OrderCount= rs.getInt("OrderCount");
+			}
+			//é¡µæ•°è®¡ç®—
+			if(OrderCount % pageSize == 0){
+				pageCount = OrderCount / pageSize;
+			}else{
+				pageCount = OrderCount / pageSize + 1; 
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			ConnDB.close(rs, stmt, conn);
+		}
+		return pageCount;
+	}
+	
 }
 

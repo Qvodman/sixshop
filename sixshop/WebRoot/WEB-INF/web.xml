@@ -52,7 +52,15 @@
     <url-pattern>/admin/Admin_XiugaiGoodsServlet</url-pattern>
   </servlet-mapping>
   
- 
+  <servlet>
+    <servlet-name>Admin_LoginServlet</servlet-name>
+    <servlet-class>Servlet.Admin_LoginServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Admin_LoginServlet</servlet-name>
+    <url-pattern>/admin/Admin_LoginServlet</url-pattern>
+  </servlet-mapping>
   
   
   

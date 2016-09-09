@@ -143,9 +143,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									    <tfoot>
 									    	<td style="border-left:#CFE0F0 1px solid;" colspan="9" style="text-align: center;">
                   			<a href="xiugai.jsp?pageNow=1">首页</a>
-                  			<a href="xiugai.jsp?pageNow=<%=pageNow-1 %>">上一页</a>                  			
+                  			<a href="xiugai.jsp?pageNow=<%=pageNow>1?pageNow-1:1%>">上一页</a>                  			
                   			<font style="color: red; font-size: 12px;"><%=pageNow %>/<%=pageCount %></font>
-                  			<a href="xiugai.jsp?pageNow=<%=pageNow+1 %>">下一页</a>
+                  			<a href="xiugai.jsp?pageNow=<%=pageNow==pageCount?pageNow:pageNow+1 %>">下一页</a>
                   			<a href="xiugai.jsp?pageNow=<%=pageCount %>">尾页</a> 
                   			<font style="color: red; font-size: 12px;">到第</font><input type="text" style="width: 20px;height: 20px;" id="pageNow"><font style="color: red; font-size: 12px;">页</font>
                   			<a href="javascript:pageGo()">跳转</a>                  			

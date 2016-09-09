@@ -74,11 +74,11 @@ public class Admin_ShangjiaServlet extends HttpServlet {
 		
 		int res =ac.ShangjiaGoods(goodsId);
 		if(res>0){
-			out.print("�ϼܳɹ���");
-			//out.print("<script>alert('�ϼܳɹ���');window.location.href='../admin/shangjia.jsp';</script>");
+			out.print("上架成功！");
+			//out.print("<script>alert('上架成功！');window.location.href='../admin/shangjia.jsp';</script>");
 		}else{
-			//out.print("<script>alert('�ϼ�ʧ�ܣ�');window.history.back();</script>");
-			out.print("�ϼ�ʧ�ܣ�");
+			//out.print("<script>alert('上架失败！');window.history.back();</script>");
+			out.print("上架失败！");
 		}
 	}
 

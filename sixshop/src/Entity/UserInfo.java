@@ -1,7 +1,7 @@
 package Entity;
 
 /**
- * ÓÃ»§ĞÅÏ¢Àà
+ * ç”¨æˆ·ä¿¡æ¯ç±»
  * @author Qvodman
  *
  */

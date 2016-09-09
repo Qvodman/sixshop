@@ -1,7 +1,7 @@
 package Entity;
 
 /**
- * 购物车信息类
+ * 璐墿杞︿俊鎭被
  * @author Qvodman
  *
  */

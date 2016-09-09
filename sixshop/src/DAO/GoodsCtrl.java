@@ -14,13 +14,13 @@ import Entity.*;
 import DB.*;
 
 /**
- * ÉÌÆ·²Ù×÷Àà
+ * å•†å“æ“ä½œç±»
  * @author Administrator
  *
  */
 public class GoodsCtrl {
 	/**
-	 * Ìí¼ÓÉÌÆ··½·¨
+	 * æ·»åŠ å•†å“æ–¹æ³•
 	 * @param goods
 	 * @return
 	 */
@@ -52,7 +52,7 @@ public class GoodsCtrl {
 	}
 	
 	/**
-	 * ĞŞ¸ÄÉÌÆ··½·¨
+	 * ä¿®æ”¹å•†å“æ–¹æ³•
 	 * @param goods
 	 * @return
 	 */
@@ -83,15 +83,15 @@ public class GoodsCtrl {
 		return res;
 	}
 	
-	/*==ÉÌÆ·ÁĞ±íÊı¾İ·ÖÒ³==*/
+	/*==å•†å“åˆ—è¡¨æ•°æ®åˆ†é¡µ==*/
 	/**
-	 * Õ¹Ê¾ËùÓĞÉÌÆ·
-	 * ¸ù¾İµ±Ç°Ò³ÊıºÍÃ¿Ò³ÏÔÊ¾µÄĞĞÊıÀ´²éÑ¯ÏàÓ¦µÄ½á¹û
+	 * å±•ç¤ºæ‰€æœ‰å•†å“
+	 * æ ¹æ®å½“å‰é¡µæ•°å’Œæ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°æ¥æŸ¥è¯¢ç›¸åº”çš„ç»“æœ
 	 * 
 	 * @param pageSize
-	 *            Ã¿Ò³ÏÔÊ¾µÄĞĞÊı
+	 *            æ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°
 	 * @param pageNow
-	 *            µ±Ç°µÄÒ³Êı
+	 *            å½“å‰çš„é¡µæ•°
 	 * @return
 	 */
 	
@@ -100,96 +100,7 @@ public class GoodsCtrl {
 		Connection conn = ConnDB.getConn();
 		Statement stmt = null;
 		ResultSet rs = null;
-		String sql = "select * from goods order by ID asc limit "+(pageNow-1)+","+pageSize+"";
-		try {
-			stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql);
-			while(rs.next()){
-				if(agoods==null){
-					agoods=new ArrayList<GoodsInfo>();					
-				}
-				GoodsInfo goods = new GoodsInfo();
-				goods.setGoodsID(rs.getString("ID"));
-				goods.setGoodsName(rs.getString("name"));
-				goods.setGoodsType(rs.getString("type"));
-				goods.setGoodsImage(rs.getString("image"));
-				goods.setGoodsKucun(rs.getInt("kucun"));
-				goods.setGoodsYishou(rs.getInt("yishou"));
-				goods.setGoodsPrice(rs.getDouble("price"));				
-				goods.setGoodsMiaosu(rs.getString("miaosu"));
-				goods.setGoodsShangjia(rs.getInt("shangjia"));
-				agoods.add(goods);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			ConnDB.close(rs, stmt, conn);
-		}
-		return agoods;
-	}
-	
-	/*==ÉÌÆ·ÁĞ±íÊı¾İ·ÖÒ³==*/
-	/**
-	 * ²éÑ¯Î´ÉÏ¼ÜÉÌÆ·
-	 * ¸ù¾İµ±Ç°Ò³ÊıºÍÃ¿Ò³ÏÔÊ¾µÄĞĞÊıÀ´²éÑ¯ÏàÓ¦µÄ½á¹û
-	 * 
-	 * @param pageSize
-	 *            Ã¿Ò³ÏÔÊ¾µÄĞĞÊı
-	 * @param pageNow
-	 *            µ±Ç°µÄÒ³Êı
-	 * @return
-	 */
-	public ArrayList<GoodsInfo> getShangjiaGoodsForPage(int pageSize, int pageNow) {
-		ArrayList<GoodsInfo> agoods = null;
-		Connection conn = ConnDB.getConn();
-		Statement stmt = null;
-		ResultSet rs = null;
-		String sql = "select * from goods where shangjia = '0' order by ID asc limit "+(pageNow-1)+","+pageSize+"";
-		try {
-			stmt=conn.createStatement();
-			rs=stmt.executeQuery(sql);
-			while(rs.next()){
-				if(agoods==null){
-					agoods=new ArrayList<GoodsInfo>();					
-				}
-				GoodsInfo goods = new GoodsInfo();
-				goods.setGoodsID(rs.getString("ID"));
-				goods.setGoodsName(rs.getString("name"));
-				goods.setGoodsType(rs.getString("type"));
-				goods.setGoodsImage(rs.getString("image"));
-				goods.setGoodsKucun(rs.getInt("kucun"));
-				goods.setGoodsYishou(rs.getInt("yishou"));
-				goods.setGoodsPrice(rs.getDouble("price"));				
-				goods.setGoodsMiaosu(rs.getString("miaosu"));
-				goods.setGoodsShangjia(rs.getInt("shangjia"));
-				agoods.add(goods);
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			ConnDB.close(rs, stmt, conn);
-		}
-		return agoods;
-	}
-	/*==ÉÌÆ·ÁĞ±íÊı¾İ·ÖÒ³==*/
-	/**
-	 * ²éÑ¯ÉÏ¼ÜÉÌÆ·
-	 * ¸ù¾İµ±Ç°Ò³ÊıºÍÃ¿Ò³ÏÔÊ¾µÄĞĞÊıÀ´²éÑ¯ÏàÓ¦µÄ½á¹û
-	 * 
-	 * @param pageSize
-	 *            Ã¿Ò³ÏÔÊ¾µÄĞĞÊı
-	 * @param pageNow
-	 *            µ±Ç°µÄÒ³Êı
-	 * @return
-	 */
-	public ArrayList<GoodsInfo> getXiajiaGoodsForPage(int pageSize, int pageNow) {
-		ArrayList<GoodsInfo> agoods = null;
-		Connection conn = ConnDB.getConn();
-		Statement stmt = null;
-		ResultSet rs = null;
-		String sql = "select * from goods where shangjia = '1' order by ID asc limit "+(pageNow-1)+","+pageSize+"";
+		String sql = "select * from goods order by ID asc limit "+(pageNow-1)*pageSize+","+pageSize+"";
 		try {
 			stmt=conn.createStatement();
 			rs=stmt.executeQuery(sql);
@@ -218,13 +129,13 @@ public class GoodsCtrl {
 		return agoods;
 	}
 	/**
-	 * »ñÈ¡×ÜÒ³Êı
+	 * è·å–æ€»é¡µæ•°
 	 * @param pageSize
 	 * @return
 	 */
 	public int getGoodsCount(int pageSize){
 		int pageCount = 0;
-		int goodsCount = 0;//»ñÈ¡µ½ÉÌÆ·µÄ×ÜÊı
+		int goodsCount = 0;//è·å–åˆ°å•†å“çš„æ€»æ•°
 		Connection conn = ConnDB.getConn();
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -235,7 +146,160 @@ public class GoodsCtrl {
 			if(rs.next()){
 				goodsCount = rs.getInt("goodsCount");
 			}
-			//Ò³Êı¼ÆËã
+			//é¡µæ•°è®¡ç®—
+			if(goodsCount % pageSize == 0){
+				pageCount = goodsCount / pageSize;
+			}else{
+				pageCount = goodsCount / pageSize + 1; 
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			ConnDB.close(rs, stmt, conn);
+		}
+		return pageCount;
+	}
+	
+	/*==å•†å“åˆ—è¡¨æ•°æ®åˆ†é¡µ==*/
+	/**
+	 * æŸ¥è¯¢æœªä¸Šæ¶å•†å“
+	 * æ ¹æ®å½“å‰é¡µæ•°å’Œæ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°æ¥æŸ¥è¯¢ç›¸åº”çš„ç»“æœ
+	 * 
+	 * @param pageSize
+	 *            æ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°
+	 * @param pageNow
+	 *            å½“å‰çš„é¡µæ•°
+	 * @return
+	 */
+	public ArrayList<GoodsInfo> getShangjiaGoodsForPage(int pageSize, int pageNow) {
+		ArrayList<GoodsInfo> agoods = null;
+		Connection conn = ConnDB.getConn();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from goods where shangjia = '0' order by ID asc limit "+(pageNow-1)*pageSize+","+pageSize+"";
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			while(rs.next()){
+				if(agoods==null){
+					agoods=new ArrayList<GoodsInfo>();					
+				}
+				GoodsInfo goods = new GoodsInfo();
+				goods.setGoodsID(rs.getString("ID"));
+				goods.setGoodsName(rs.getString("name"));
+				goods.setGoodsType(rs.getString("type"));
+				goods.setGoodsImage(rs.getString("image"));
+				goods.setGoodsKucun(rs.getInt("kucun"));
+				goods.setGoodsYishou(rs.getInt("yishou"));
+				goods.setGoodsPrice(rs.getDouble("price"));				
+				goods.setGoodsMiaosu(rs.getString("miaosu"));
+				goods.setGoodsShangjia(rs.getInt("shangjia"));
+				agoods.add(goods);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			ConnDB.close(rs, stmt, conn);
+		}
+		return agoods;
+	}
+	/**
+	 * è·å–æœªä¸Šæ¶å•†å“æ€»é¡µæ•°
+	 * @param pageSize
+	 * @return
+	 */
+	public int getShangjiaGoodsCount(int pageSize){
+		int pageCount = 0;
+		int goodsCount = 0;//è·å–åˆ°å•†å“çš„æ€»æ•°
+		Connection conn = ConnDB.getConn();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) as goodsCount from goods where shangjia = '0'";
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs.next()){
+				goodsCount = rs.getInt("goodsCount");
+			}
+			//é¡µæ•°è®¡ç®—
+			if(goodsCount % pageSize == 0){
+				pageCount = goodsCount / pageSize;
+			}else{
+				pageCount = goodsCount / pageSize + 1; 
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			ConnDB.close(rs, stmt, conn);
+		}
+		return pageCount;
+	}
+	/*==å•†å“åˆ—è¡¨æ•°æ®åˆ†é¡µ==*/
+	/**
+	 * æŸ¥è¯¢ä¸Šæ¶å•†å“
+	 * æ ¹æ®å½“å‰é¡µæ•°å’Œæ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°æ¥æŸ¥è¯¢ç›¸åº”çš„ç»“æœ
+	 * 
+	 * @param pageSize
+	 *            æ¯é¡µæ˜¾ç¤ºçš„è¡Œæ•°
+	 * @param pageNow
+	 *            å½“å‰çš„é¡µæ•°
+	 * @return
+	 */
+	public ArrayList<GoodsInfo> getXiajiaGoodsForPage(int pageSize, int pageNow) {
+		ArrayList<GoodsInfo> agoods = null;
+		Connection conn = ConnDB.getConn();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select * from goods where shangjia = '1' order by ID asc limit "+(pageNow-1)*pageSize+","+pageSize+"";
+		try {
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery(sql);
+			while(rs.next()){
+				if(agoods==null){
+					agoods=new ArrayList<GoodsInfo>();					
+				}
+				GoodsInfo goods = new GoodsInfo();
+				goods.setGoodsID(rs.getString("ID"));
+				goods.setGoodsName(rs.getString("name"));
+				goods.setGoodsType(rs.getString("type"));
+				goods.setGoodsImage(rs.getString("image"));
+				goods.setGoodsKucun(rs.getInt("kucun"));
+				goods.setGoodsYishou(rs.getInt("yishou"));
+				goods.setGoodsPrice(rs.getDouble("price"));				
+				goods.setGoodsMiaosu(rs.getString("miaosu"));
+				goods.setGoodsShangjia(rs.getInt("shangjia"));
+				agoods.add(goods);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			ConnDB.close(rs, stmt, conn);
+		}
+		return agoods;
+	}
+	/**
+	 * è·å–ä¸Šæ¶å•†å“æ€»é¡µæ•°
+	 * @param pageSize
+	 * @return
+	 */
+	public int getXiajiaGoodsCount(int pageSize){
+		int pageCount = 0;
+		int goodsCount = 0;//è·å–åˆ°å•†å“çš„æ€»æ•°
+		Connection conn = ConnDB.getConn();
+		Statement stmt = null;
+		ResultSet rs = null;
+		String sql = "select count(*) as goodsCount from goods where shangjia = '1'";
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			if(rs.next()){
+				goodsCount = rs.getInt("goodsCount");
+			}
+			//é¡µæ•°è®¡ç®—
 			if(goodsCount % pageSize == 0){
 				pageCount = goodsCount / pageSize;
 			}else{
@@ -250,7 +314,7 @@ public class GoodsCtrl {
 		return pageCount;
 	}
 	/**
-	 * ¸ù¾İID²éÑ¯ÉÌÆ··½·¨
+	 * æ ¹æ®IDæŸ¥è¯¢å•†å“æ–¹æ³•
 	 * @param goodsId
 	 * @return
 	 */

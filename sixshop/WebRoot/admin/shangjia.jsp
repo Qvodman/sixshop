@@ -15,7 +15,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	if(request.getParameter("pageNow") != null)
 	pageNow = Integer.parseInt(request.getParameter("pageNow"));
 	//获取总页数
-	pageCount = gc.getGoodsCount(pageSize);
+	pageCount = gc.getShangjiaGoodsCount(pageSize);
 	
 	//如果小于第一页，则显示第一页
 	if(pageNow <= 0){
@@ -137,9 +137,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									    	
                   		<td style="border-left:#CFE0F0 1px solid;" colspan="9" style="text-align: center;">
                   			<a href="shangjia.jsp?pageNow=1">首页</a>
-                  			<a href="shangjia.jsp?pageNow=<%=pageNow-1 %>">上一页</a>                  			
+                  			<a href="shangjia.jsp?pageNow=<%=pageNow>1?pageNow-1:1%>">上一页</a>                  			
                   			<font style="color: red; font-size: 12px;"><%=pageNow %>/<%=pageCount %></font>
-                  			<a href="shangjia.jsp?pageNow=<%=pageNow+1 %>">下一页</a>
+                  			<a href="shangjia.jsp?pageNow=<%=pageNow==pageCount?pageNow:pageNow+1 %>">下一页</a>
                   			<a href="shangjia.jsp?pageNow=<%=pageCount %>">尾页</a>
                   			<font style="color: red; font-size: 12px;">到第</font><input type="text" style="width: 20px;height: 20px;" id="pageNow"><font style="color: red; font-size: 12px;">页</font>
                   			<a href="javascript:pageGo()">跳转</a>                  			
